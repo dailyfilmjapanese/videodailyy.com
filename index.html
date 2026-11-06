@@ -1,77 +1,187 @@
-Hello word
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Watch Video</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Video Viral</title>
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*{box-sizing:border-box}
+body{
+ margin:0;padding:16px;
+ background:radial-gradient(ellipse at center,#22204c,#080d1e);
+ color:white;font-family:Arial,sans-serif
 }
-
-body {
-  background: #000;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px;
+.wrap{max-width:720px;margin:auto}
+.brand{text-align:center;font-size:30px;font-weight:bold;margin:15px}
+.player{
+ position:relative;background:#000;border-radius:25px;
+ overflow:hidden;aspect-ratio:16/9
 }
-
-.video-container {
-  width: 100%;
-  max-width: 900px;
+video{width:100%;height:100%;object-fit:contain}
+.play{
+ position:absolute;top:50%;left:50%;
+ transform:translate(-50%,-50%);
+ width:70px;height:70px;border:0;border-radius:50%;
+ font-size:30px;cursor:pointer
 }
-
-video {
-  width: 100%;
-  display: block;
-  background: #000;
-  border-radius: 8px;
+.controls{
+ position:absolute;bottom:0;width:100%;padding:12px;
+ display:flex;align-items:center;gap:10px;
+ background:linear-gradient(transparent,#000c)
+}
+.controls button{background:none;color:white;border:0;font-size:20px}
+.controls input{flex:1;min-width:0}
+.telegram{
+ display:flex;justify-content:center;align-items:center;
+ gap:15px;padding:25px 10px;margin:30px 0;
+ border-radius:25px;background:linear-gradient(100deg,#078acb,#08bfe9);
+ color:white;text-decoration:none;font-size:23px;
+ font-weight:bold;text-align:center
+}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.category{
+ border:0;border-radius:25px;padding:20px 5px;
+ min-height:245px;color:white;cursor:pointer;
+ box-shadow:0 10px 25px #0005
+}
+.category:nth-child(1){background:linear-gradient(145deg,#ff4c72,#d80d48)}
+.category:nth-child(2){background:linear-gradient(145deg,#12dc83,#00a94f)}
+.category:nth-child(3){background:linear-gradient(145deg,#369cff,#1762df)}
+.flag{font-size:55px;margin:20px 0}
+.category strong{display:block;font-size:18px}
+.category span{display:block;margin-top:12px}
+.footer{text-align:center;margin:25px;color:#aaa}
+@media(max-width:430px){
+ .category{min-height:220px}
+ .category strong{font-size:15px}
+ .telegram{font-size:19px}
+ .flag{font-size:45px}
 }
 </style>
 </head>
-
 <body>
+<main class="wrap">
 
-<div class="video-container">
-  <video
-    id="myVideo"
-    controls
-    playsinline
-    preload="metadata"
-    poster=""
-  >
-    <source
-      src="https://ik.imagekit.io/gaw1shzp8/ssstwitter.com_1793918419018.mp4?updatedAt=1793918815295"
-      type="video/mp4">
-  </video>
-</div>
+<div class="brand">VIDEO VIRAL</div>
+
+<section class="player">
+ <video id="video" playsinline preload="metadata"
+ src="https://ik.imagekit.io/gaw1shzp8/ssstwitter.com_1793918419018.mp4?updatedAt=1793918815295">
+ </video>
+
+ <button class="play" id="play">▶</button>
+
+ <div class="controls">
+  <button id="toggle">▶</button>
+  <input type="range" id="seek" min="0" max="100" value="0">
+  <button id="mute">🔊</button>
+  <button id="fullscreen">⛶</button>
+ </div>
+</section>
+
+<a class="telegram"
+ href="https://t.me/DailyFilmJapanese1"
+ target="_blank" rel="noopener">
+ ➤ BERGABUNGLAH DENGAN TELEGRAM
+</a>
+
+<section class="cards">
+
+<button class="category" onclick="openAd()">
+ <div class="flag">🇯🇵</div>
+ <strong>JEPANG</strong>
+ <span>Jepang</span>
+ <span>Koleksi 1.2K</span>
+</button>
+
+<button class="category" onclick="openAd()">
+ <div class="flag">🇮🇩</div>
+ <strong>INDONESIA</strong>
+ <span>Indonesia</span>
+ <span>Koleksi 840</span>
+</button>
+
+<button class="category" onclick="openAd()">
+ <div class="flag">🌍</div>
+ <strong>BARAT</strong>
+ <span>Barat</span>
+ <span>Koleksi 2.1K</span>
+</button>
+
+</section>
+
+<div class="footer">Video Viral</div>
+</main>
 
 <script>
-const video = document.getElementById("myVideo");
+const video = document.getElementById("video");
 
 const adLink =
 "https://auctionr.org/4/df7b205aadf9a4d6188119c934647e8d";
 
-let firstPlay = true;
+let clickCount = 0;
 
-video.addEventListener("play", function() {
-  if (firstPlay) {
-    firstPlay = false;
+function openAd(){
+ window.open(adLink,"_blank","noopener,noreferrer");
+}
 
-    window.open(
-      adLink,
-      "_blank",
-      "noopener,noreferrer"
-    );
-  }
+function playAction(){
+ clickCount++;
+
+ if(clickCount % 2 === 1){
+   video.currentTime = 0;
+   video.play();
+ }else{
+   openAd();
+ }
+}
+
+document.getElementById("play")
+.addEventListener("click",playAction);
+
+document.getElementById("toggle")
+.addEventListener("click",playAction);
+
+video.addEventListener("play",()=>{
+ document.getElementById("play").style.display="none";
+ document.getElementById("toggle").textContent="Ⅱ";
 });
-</script>
 
+video.addEventListener("pause",()=>{
+ document.getElementById("play").style.display="block";
+ document.getElementById("toggle").textContent="▶";
+});
+
+video.addEventListener("ended",()=>{
+ document.getElementById("play").style.display="block";
+});
+
+video.addEventListener("timeupdate",()=>{
+ if(video.duration){
+  document.getElementById("seek").value =
+  video.currentTime/video.duration*100;
+ }
+});
+
+document.getElementById("seek").addEventListener("input",e=>{
+ if(video.duration){
+  video.currentTime=e.target.value/100*video.duration;
+ }
+});
+
+document.getElementById("mute").onclick=()=>{
+ video.muted=!video.muted;
+ document.getElementById("mute").textContent=
+ video.muted?"🔇":"🔊";
+};
+
+document.getElementById("fullscreen").onclick=()=>{
+ if(video.requestFullscreen){
+  video.requestFullscreen();
+ }else if(video.webkitEnterFullscreen){
+  video.webkitEnterFullscreen();
+ }
+};
+</script>
 </body>
 </html>
