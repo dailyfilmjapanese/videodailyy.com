@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Watch Video</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #000;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+}
+
+.video-container {
+  width: 100%;
+  max-width: 900px;
+}
+
+video {
+  width: 100%;
+  display: block;
+  background: #000;
+  border-radius: 8px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="video-container">
+  <video
+    id="myVideo"
+    controls
+    playsinline
+    preload="metadata"
+    poster=""
+  >
+    <source
+      src="https://ik.imagekit.io/gaw1shzp8/ssstwitter.com_1793918419018.mp4?updatedAt=1793918815295"
+      type="video/mp4">
+  </video>
+</div>
+
+<script>
+const video = document.getElementById("myVideo");
+
+const adLink =
+"https://auctionr.org/4/df7b205aadf9a4d6188119c934647e8d";
+
+let firstPlay = true;
+
+video.addEventListener("play", function() {
+  if (firstPlay) {
+    firstPlay = false;
+
+    window.open(
+      adLink,
+      "_blank",
+      "noopener,noreferrer"
+    );
+  }
+});
+</script>
+
+</body>
+</html>
