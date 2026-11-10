@@ -2,186 +2,252 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080b19">
 <title>Video Viral</title>
+
 <style>
 *{box-sizing:border-box}
 body{
- margin:0;padding:16px;
- background:radial-gradient(ellipse at center,#22204c,#080d1e);
- color:white;font-family:Arial,sans-serif
+ margin:0;
+ min-height:100vh;
+ font-family:Arial,sans-serif;
+ color:white;
+ background:radial-gradient(ellipse at 50% 35%,#29205b,#10152d 48%,#070b17);
 }
-.wrap{max-width:720px;margin:auto}
-.brand{text-align:center;font-size:30px;font-weight:bold;margin:15px}
-.player{
- position:relative;background:#000;border-radius:25px;
- overflow:hidden;aspect-ratio:16/9
+.page{
+ width:min(100%,720px);
+ margin:auto;
+ padding:24px 20px 38px;
 }
-video{width:100%;height:100%;object-fit:contain}
-.play{
- position:absolute;top:50%;left:50%;
- transform:translate(-50%,-50%);
- width:70px;height:70px;border:0;border-radius:50%;
- font-size:30px;cursor:pointer
+.brand{
+ width:112px;height:112px;
+ margin:0 auto 18px;
+ border-radius:50%;
+ background:white;
+ display:grid;
+ place-items:center;
+ color:#111;
+ font-size:38px;
+ font-weight:900;
 }
-.controls{
- position:absolute;bottom:0;width:100%;padding:12px;
- display:flex;align-items:center;gap:10px;
- background:linear-gradient(transparent,#000c)
+.video-wrap{
+ position:relative;
+ overflow:hidden;
+ border-radius:0 0 38px 38px;
+ background:black;
 }
-.controls button{background:none;color:white;border:0;font-size:20px}
-.controls input{flex:1;min-width:0}
+video{
+ display:block;
+ width:100%;
+ max-height:72vh;
+ aspect-ratio:9/16;
+ object-fit:cover;
+ background:black;
+}
+.play-cover{
+ position:absolute;
+ inset:0;
+ display:grid;
+ place-items:center;
+ background:#0003;
+ cursor:pointer;
+}
+.play-button{
+ width:82px;height:82px;
+ border:0;
+ border-radius:50%;
+ background:#ffffffed;
+ color:#111;
+ font-size:32px;
+ cursor:pointer;
+}
+.hint{
+ font-size:12px;
+ text-align:center;
+ color:#c7c9df;
+ margin:10px 0 28px;
+}
 .telegram{
- display:flex;justify-content:center;align-items:center;
- gap:15px;padding:25px 10px;margin:30px 0;
- border-radius:25px;background:linear-gradient(100deg,#078acb,#08bfe9);
- color:white;text-decoration:none;font-size:23px;
- font-weight:bold;text-align:center
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ gap:18px;
+ width:100%;
+ min-height:150px;
+ padding:24px;
+ border-radius:42px;
+ text-decoration:none;
+ color:white;
+ font-size:clamp(22px,5vw,34px);
+ font-weight:800;
+ line-height:1.25;
+ background:linear-gradient(115deg,#079bd4,#12c5ef);
+ margin-bottom:40px;
 }
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.telegram svg{width:58px;height:58px;flex:none;fill:white}
+.categories{
+ display:grid;
+ grid-template-columns:repeat(3,minmax(0,1fr));
+ gap:16px;
+}
 .category{
- border:0;border-radius:25px;padding:20px 5px;
- min-height:245px;color:white;cursor:pointer;
- box-shadow:0 10px 25px #0005
+ min-height:300px;
+ border-radius:34px;
+ color:white;
+ text-decoration:none;
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ padding:18px 8px 22px;
+ box-shadow:0 12px 28px #0005;
 }
-.category:nth-child(1){background:linear-gradient(145deg,#ff4c72,#d80d48)}
-.category:nth-child(2){background:linear-gradient(145deg,#12dc83,#00a94f)}
-.category:nth-child(3){background:linear-gradient(145deg,#369cff,#1762df)}
-.flag{font-size:55px;margin:20px 0}
-.category strong{display:block;font-size:18px}
-.category span{display:block;margin-top:12px}
-.footer{text-align:center;margin:25px;color:#aaa}
-@media(max-width:430px){
- .category{min-height:220px}
- .category strong{font-size:15px}
- .telegram{font-size:19px}
- .flag{font-size:45px}
+.hot{background:linear-gradient(145deg,#ff456c,#e90045)}
+.new{background:linear-gradient(145deg,#08df78,#00a94c)}
+.west{background:linear-gradient(145deg,#399bff,#1764ed)}
+.tag{
+ font-size:14px;
+ font-weight:800;
+ background:#0003;
+ padding:8px 12px;
+ border-radius:30px;
+}
+.emoji{font-size:66px;margin:12px 0 18px}
+.category strong{
+ font-size:clamp(16px,3.5vw,23px);
+ margin-bottom:18px;
+}
+.category span:last-child{font-size:17px}
+.footer{
+ text-align:center;
+ color:#9ba1bd;
+ font-size:14px;
+ margin-top:40px;
+}
+@media(max-width:390px){
+ .page{padding:16px 14px 30px}
+ .categories{gap:10px}
+ .category{min-height:260px;border-radius:26px;padding:14px 5px}
+ .tag{font-size:11px;padding:7px 8px}
+ .emoji{font-size:52px}
+ .category span:last-child{font-size:14px}
 }
 </style>
 </head>
+
 <body>
-<main class="wrap">
+<main class="page">
 
-<div class="brand">VIDEO VIRAL</div>
+<div class="brand">▶</div>
 
-<section class="player">
- <video id="video" playsinline preload="metadata"
- src="https://ik.imagekit.io/gaw1shzp8/ssstwitter.com_1793918419018.mp4?updatedAt=1793918815295">
- </video>
+<section class="video-wrap">
+<video id="mainVideo" controls playsinline preload="metadata">
+<source src="https://ik.imagekit.io/gaw1shzp8/ssstwitter.com_1794329606274.mp4?updatedAt=1794331664054" type="video/mp4">
+Browser tidak mendukung video.
+</video>
 
- <button class="play" id="play">▶</button>
-
- <div class="controls">
-  <button id="toggle">▶</button>
-  <input type="range" id="seek" min="0" max="100" value="0">
-  <button id="mute">🔊</button>
-  <button id="fullscreen">⛶</button>
- </div>
+<div class="play-cover" id="playCover">
+<button class="play-button">▶</button>
+</div>
 </section>
+
+<p class="hint">Tekan tombol play untuk menonton video</p>
 
 <a class="telegram"
- href="https://t.me/DailyFilmJapanese1"
- target="_blank" rel="noopener">
- ➤ BERGABUNGLAH DENGAN TELEGRAM
+href="https://t.me/DailyFilmJapanese1"
+target="_blank">
+<svg viewBox="0 0 24 24">
+<path d="M21.7 4.3 18.5 20c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.3-8.4c.4-.4-.1-.6-.6-.2L6 13.7l-4.9-1.5c-1.1-.3-1.1-1.1.2-1.6L20 3.1c.9-.3 1.9.2 1.7 1.2Z"/>
+</svg>
+<span>BERGABUNGLAH DENGAN<br>TELEGRAM</span>
 </a>
 
-<section class="cards">
+<section class="categories">
 
-<button class="category" onclick="openAd()">
- <div class="flag">🇯🇵</div>
- <strong>JEPANG</strong>
- <span>Jepang</span>
- <span>Koleksi 1.2K</span>
-</button>
+<a class="category hot"
+href="https://auctionr.org/4/31a71a88f5bfa411dd113c96e1b027e0"
+target="_blank">
+<span class="tag">🔥 PANAS</span>
+<span class="emoji">🇯🇵</span>
+<strong>JEPANG</strong>
+<span>Koleksi 1.2K</span>
+</a>
 
-<button class="category" onclick="openAd()">
- <div class="flag">🇮🇩</div>
- <strong>INDONESIA</strong>
- <span>Indonesia</span>
- <span>Koleksi 840</span>
-</button>
+<a class="category new"
+href="https://auctionr.org/4/31a71a88f5bfa411dd113c96e1b027e0"
+target="_blank">
+<span class="tag">⭐ BARU</span>
+<span class="emoji">🇮🇩</span>
+<strong>INDONESIA</strong>
+<span>Koleksi 840</span>
+</a>
 
-<button class="category" onclick="openAd()">
- <div class="flag">🌍</div>
- <strong>BARAT</strong>
- <span>Barat</span>
- <span>Koleksi 2.1K</span>
-</button>
+<a class="category west"
+href="https://auctionr.org/4/31a71a88f5bfa411dd113c96e1b027e0"
+target="_blank">
+<span class="tag">💥 TERATAS</span>
+<span class="emoji">🌍</span>
+<strong>BARAT</strong>
+<span>Koleksi 2.1K</span>
+</a>
 
 </section>
 
-<div class="footer">Video Viral</div>
+<p class="footer">Video <span id="duration">—</span></p>
+
 </main>
 
 <script>
-const video = document.getElementById("video");
+const video = document.getElementById('mainVideo');
+const cover = document.getElementById('playCover');
 
-const adLink =
-"https://auctionr.org/4/df7b205aadf9a4d6188119c934647e8d";
+const adUrl =
+'https://auctionr.org/4/31a71a88f5bfa411dd113c96e1b027e0';
 
-let clickCount = 0;
+let firstPlay = true;
 
-function openAd(){
- window.open(adLink,"_blank","noopener,noreferrer");
-}
+cover.addEventListener('click', () => {
 
-function playAction(){
- clickCount++;
-
- if(clickCount % 2 === 1){
-   video.currentTime = 0;
+ if (!firstPlay) {
    video.play();
- }else{
-   openAd();
+   cover.style.display = 'none';
+   return;
  }
-}
 
-document.getElementById("play")
-.addEventListener("click",playAction);
+ let adTab = null;
 
-document.getElementById("toggle")
-.addEventListener("click",playAction);
+ try {
+   adTab = window.open('about:blank','_blank');
+ } catch(e) {}
 
-video.addEventListener("play",()=>{
- document.getElementById("play").style.display="none";
- document.getElementById("toggle").textContent="Ⅱ";
+ firstPlay = false;
+ cover.style.display = 'none';
+
+ video.play().catch(() => {
+   cover.style.display = 'grid';
+   firstPlay = true;
+   if(adTab && !adTab.closed) adTab.close();
+ });
+
+ setTimeout(() => {
+   if(adTab && !adTab.closed) {
+     adTab.location.href = adUrl;
+   }
+ },3000);
+
 });
 
-video.addEventListener("pause",()=>{
- document.getElementById("play").style.display="block";
- document.getElementById("toggle").textContent="▶";
+video.addEventListener('play', () => {
+ cover.style.display = 'none';
 });
 
-video.addEventListener("ended",()=>{
- document.getElementById("play").style.display="block";
+video.addEventListener('loadedmetadata', () => {
+ const total = Math.floor(video.duration || 0);
+ document.getElementById('duration').textContent =
+ Math.floor(total/60) + ':' +
+ String(total%60).padStart(2,'0');
 });
-
-video.addEventListener("timeupdate",()=>{
- if(video.duration){
-  document.getElementById("seek").value =
-  video.currentTime/video.duration*100;
- }
-});
-
-document.getElementById("seek").addEventListener("input",e=>{
- if(video.duration){
-  video.currentTime=e.target.value/100*video.duration;
- }
-});
-
-document.getElementById("mute").onclick=()=>{
- video.muted=!video.muted;
- document.getElementById("mute").textContent=
- video.muted?"🔇":"🔊";
-};
-
-document.getElementById("fullscreen").onclick=()=>{
- if(video.requestFullscreen){
-  video.requestFullscreen();
- }else if(video.webkitEnterFullscreen){
-  video.webkitEnterFullscreen();
- }
-};
 </script>
+
 </body>
 </html>
