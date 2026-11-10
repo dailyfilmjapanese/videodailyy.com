@@ -1,253 +1,185 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080b19">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Video Viral</title>
-
 <style>
 *{box-sizing:border-box}
 body{
- margin:0;
- min-height:100vh;
- font-family:Arial,sans-serif;
- color:white;
- background:radial-gradient(ellipse at 50% 35%,#29205b,#10152d 48%,#070b17);
+ margin:0;background:linear-gradient(145deg,#090d1e,#17102d);
+ color:white;font-family:Arial,sans-serif;
 }
-.page{
- width:min(100%,720px);
- margin:auto;
- padding:24px 20px 38px;
-}
-.brand{
- width:112px;height:112px;
- margin:0 auto 18px;
- border-radius:50%;
- background:white;
- display:grid;
- place-items:center;
- color:#111;
- font-size:38px;
- font-weight:900;
-}
-.video-wrap{
- position:relative;
- overflow:hidden;
- border-radius:0 0 38px 38px;
- background:black;
-}
-video{
- display:block;
- width:100%;
- max-height:72vh;
- aspect-ratio:9/16;
- object-fit:cover;
- background:black;
-}
-.play-cover{
- position:absolute;
- inset:0;
- display:grid;
- place-items:center;
- background:#0003;
- cursor:pointer;
-}
-.play-button{
- width:82px;height:82px;
- border:0;
- border-radius:50%;
- background:#ffffffed;
- color:#111;
- font-size:32px;
- cursor:pointer;
-}
-.hint{
- font-size:12px;
- text-align:center;
- color:#c7c9df;
- margin:10px 0 28px;
-}
+main{max-width:760px;margin:auto;padding:20px 15px}
+.video-wrap{position:relative;background:#000;border-radius:0 0 30px 30px;overflow:hidden}
+video{width:100%;display:block;aspect-ratio:16/9;background:#000}
+.play-cover{position:absolute;inset:0;display:grid;place-items:center}
+.play-cover button{border:0;border-radius:50%;width:80px;height:80px;font-size:30px;cursor:pointer}
+.hidden{display:none!important}
+.note{text-align:center;color:#aaaebf;padding:12px}
 .telegram{
- display:flex;
- align-items:center;
- justify-content:center;
- gap:18px;
- width:100%;
- min-height:150px;
- padding:24px;
- border-radius:42px;
- text-decoration:none;
- color:white;
- font-size:clamp(22px,5vw,34px);
- font-weight:800;
- line-height:1.25;
- background:linear-gradient(115deg,#079bd4,#12c5ef);
- margin-bottom:40px;
+ display:flex;align-items:center;justify-content:center;gap:20px;
+ margin:30px 0 40px;padding:30px 12px;border-radius:35px;
+ background:linear-gradient(110deg,#079bd4,#08b9ed);
+ color:white;text-decoration:none;font-size:25px;font-weight:bold;
 }
-.telegram svg{width:58px;height:58px;flex:none;fill:white}
-.categories{
- display:grid;
- grid-template-columns:repeat(3,minmax(0,1fr));
- gap:16px;
-}
+.telegram span:first-child{font-size:40px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
 .category{
- min-height:300px;
- border-radius:34px;
- color:white;
- text-decoration:none;
- display:flex;
- flex-direction:column;
- align-items:center;
- padding:18px 8px 22px;
- box-shadow:0 12px 28px #0005;
+ border:0;border-radius:30px;min-height:260px;padding:12px 5px;
+ color:white;display:flex;flex-direction:column;
+ align-items:center;cursor:pointer;
 }
-.hot{background:linear-gradient(145deg,#ff456c,#e90045)}
-.new{background:linear-gradient(145deg,#08df78,#00a94c)}
-.west{background:linear-gradient(145deg,#399bff,#1764ed)}
-.tag{
- font-size:14px;
- font-weight:800;
- background:#0003;
- padding:8px 12px;
- border-radius:30px;
-}
-.emoji{font-size:66px;margin:12px 0 18px}
-.category strong{
- font-size:clamp(16px,3.5vw,23px);
- margin-bottom:18px;
-}
-.category span:last-child{font-size:17px}
-.footer{
- text-align:center;
- color:#9ba1bd;
- font-size:14px;
- margin-top:40px;
-}
-@media(max-width:390px){
- .page{padding:16px 14px 30px}
- .categories{gap:10px}
- .category{min-height:260px;border-radius:26px;padding:14px 5px}
- .tag{font-size:11px;padding:7px 8px}
- .emoji{font-size:52px}
- .category span:last-child{font-size:14px}
+.jp{background:linear-gradient(145deg,#ff4769,#e90b42)}
+.id{background:linear-gradient(145deg,#00e77a,#00a84e)}
+.west{background:linear-gradient(145deg,#399cff,#1763dc)}
+.tag{font-size:12px;background:#0003;padding:7px;border-radius:20px;align-self:flex-end}
+.flag{font-size:55px;margin:15px 0}
+.category strong{font-size:18px;margin-bottom:15px}
+.country{font-size:16px;margin-bottom:15px}
+.count{font-size:15px}
+footer{text-align:center;color:#aaa;margin:35px 0}
+@media(max-width:500px){
+ .cards{gap:10px}
+ .category{min-height:245px}
+ .category strong{font-size:15px}
+ .country,.count{font-size:13px}
+ .telegram{font-size:20px}
 }
 </style>
 </head>
-
 <body>
-<main class="page">
+<main>
 
-<div class="brand">▶</div>
-
-<section class="video-wrap">
-<video id="mainVideo" controls playsinline preload="metadata">
-<source src="https://ik.imagekit.io/gaw1shzp8/ssstwitter.com_1793801843614.mp4?updatedAt=1793802399194" type="video/mp4">
-Browser tidak mendukung video.
-</video>
-
-<div class="play-cover" id="playCover">
-<button class="play-button">▶</button>
+<div class="video-wrap">
+ <video id="video" playsinline preload="metadata" controls></video>
+ <div class="play-cover" id="cover">
+  <button id="startButton">▶</button>
+ </div>
 </div>
-</section>
 
-<p class="hint">Tekan tombol play untuk menonton video</p>
+<div class="note" id="note">Tekan Play untuk menonton video</div>
 
-<a class="telegram"
-href="https://t.me/DailyFilmJapanese1"
-target="_blank">
-<svg viewBox="0 0 24 24">
-<path d="M21.7 4.3 18.5 20c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.3-8.4c.4-.4-.1-.6-.6-.2L6 13.7l-4.9-1.5c-1.1-.3-1.1-1.1.2-1.6L20 3.1c.9-.3 1.9.2 1.7 1.2Z"/>
-</svg>
-<span>BERGABUNGLAH DENGAN<br>TELEGRAM</span>
+<a class="telegram" id="telegram" target="_blank" rel="noopener noreferrer">
+ <span>➤</span>
+ <span>BERGABUNGLAH DENGAN<br>TELEGRAM</span>
 </a>
 
-<section class="categories">
+<div class="cards">
 
-<a class="category hot"
-href="https://auctionr.org/4/31a71a88f5bfa411dd113c96e1b027e0"
-target="_blank">
-<span class="tag">🔥 PANAS</span>
-<span class="emoji">🇯🇵</span>
-<strong>JEPANG</strong>
-<span>Koleksi 1.2K</span>
-</a>
+<button class="category jp" data-category="jepang">
+ <span class="tag">🔥 PANAS</span>
+ <span class="flag">🇯🇵</span>
+ <strong>JEPANG</strong>
+ <span class="country">Jepang</span>
+ <span class="count">Koleksi 1.2K</span>
+</button>
 
-<a class="category new"
-href="https://auctionr.org/4/31a71a88f5bfa411dd113c96e1b027e0"
-target="_blank">
-<span class="tag">⭐ BARU</span>
-<span class="emoji">🇮🇩</span>
-<strong>INDONESIA</strong>
-<span>Koleksi 840</span>
-</a>
+<button class="category id" data-category="indonesia">
+ <span class="tag">⭐ BARU</span>
+ <span class="flag">🇮🇩</span>
+ <strong>INDONESIA</strong>
+ <span class="country">Indonesia</span>
+ <span class="count">Koleksi 840</span>
+</button>
 
-<a class="category west"
-href="https://auctionr.org/4/31a71a88f5bfa411dd113c96e1b027e0"
-target="_blank">
-<span class="tag">💥 TERATAS</span>
-<span class="emoji">🌍</span>
-<strong>BARAT</strong>
-<span>Koleksi 2.1K</span>
-</a>
+<button class="category west" data-category="barat">
+ <span class="tag">💥 TERATAS</span>
+ <span class="flag">🌍</span>
+ <strong>BARAT</strong>
+ <span class="country">Barat</span>
+ <span class="count">Koleksi 2.1K</span>
+</button>
 
-</section>
+</div>
 
-<p class="footer">Video <span id="duration">—</span></p>
-
+<footer>✣ Powered by Netlify</footer>
 </main>
 
 <script>
-const video = document.getElementById('mainVideo');
-const cover = document.getElementById('playCover');
+// LINK MILIK KAMU
+const TELEGRAM_URL = "https://t.me/DailyFilmJapanese1";
 
-const adUrl =
-'https://auctionr.org/4/31a71a88f5bfa411dd113c96e1b027e0';
+const ADSTERRA_URL = "https://auctionr.org/4/df7b205aadf9a4d6188119c934647e8d";
+
+const VIDEO_URL = "https://ik.imagekit.io/gaw1shzp8/ssstwitter.com_1794329606274.mp4?updatedAt=1794331664054";
+
+// PASANG VIDEO
+const video = document.getElementById("video");
+const cover = document.getElementById("cover");
+const note = document.getElementById("note");
+
+video.src = VIDEO_URL;
+document.getElementById("telegram").href = TELEGRAM_URL;
 
 let firstPlay = true;
+let waitingForAd = false;
+let adTab = null;
 
-cover.addEventListener('click', () => {
+function playVideo(){
+ cover.classList.add("hidden");
+ video.play().catch(()=>{
+  cover.classList.remove("hidden");
+  note.textContent="Video gagal diputar. Periksa link video.";
+ });
+}
 
- if (!firstPlay) {
-   video.play();
-   cover.style.display = 'none';
-   return;
+// KLIK PLAY PERTAMA
+document.getElementById("startButton").addEventListener("click",()=>{
+ if(!firstPlay){
+  playVideo();
+  return;
  }
 
- let adTab = null;
+ firstPlay=false;
 
- try {
-   adTab = window.open('about:blank','_blank');
- } catch(e) {}
+ // Buka tab iklan setelah 5 detik
+ adTab=window.open("about:blank","_blank");
 
- firstPlay = false;
- cover.style.display = 'none';
+ playVideo();
+ note.textContent="Video dimulai. Iklan akan dibuka dalam 5 detik...";
 
- video.play().catch(() => {
-   cover.style.display = 'grid';
-   firstPlay = true;
-   if(adTab && !adTab.closed) adTab.close();
+ setTimeout(()=>{
+  video.pause();
+  waitingForAd=true;
+
+  if(adTab && !adTab.closed){
+   adTab.location.href=ADSTERRA_URL;
+   note.textContent="Silakan kembali ke tab ini setelah iklan.";
+  }else{
+   note.textContent="Popup diblokir. Izinkan popup browser.";
+   cover.classList.remove("hidden");
+  }
+ },5000);
+});
+
+// LANJUTKAN VIDEO SAAT KEMBALI
+document.addEventListener("visibilitychange",()=>{
+ if(document.visibilityState==="visible" && waitingForAd){
+  waitingForAd=false;
+  playVideo();
+ }
+});
+
+window.addEventListener("focus",()=>{
+ if(waitingForAd){
+  waitingForAd=false;
+  playVideo();
+ }
+});
+
+// KLIK KATEGORI
+document.querySelectorAll(".category").forEach(button=>{
+ button.addEventListener("click",()=>{
+  window.location.href=ADSTERRA_URL;
  });
-
- setTimeout(() => {
-   if(adTab && !adTab.closed) {
-     adTab.location.href = adUrl;
-   }
- },3000);
-
 });
 
-video.addEventListener('play', () => {
- cover.style.display = 'none';
+video.addEventListener("ended",()=>{
+ cover.classList.remove("hidden");
+ note.textContent="Video selesai. Tekan Play untuk menonton lagi.";
 });
 
-video.addEventListener('loadedmetadata', () => {
- const total = Math.floor(video.duration || 0);
- document.getElementById('duration').textContent =
- Math.floor(total/60) + ':' +
- String(total%60).padStart(2,'0');
-});
 </script>
-
 </body>
 </html>
