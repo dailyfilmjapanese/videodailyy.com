@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Video Viral Terbaru</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ padding:20px 14px;
+ font-family:Arial,sans-serif;
+ color:white;
+ background:radial-gradient(ellipse at center,#21113e,#090d1d 75%);
+}
+.page{max-width:700px;margin:auto}
+.logo{
+ width:75px;height:75px;border-radius:50%;
+ background:white;color:#111;
+ display:grid;place-items:center;
+ font-size:32px;margin:0 auto 20px;
+}
+h1{text-align:center;font-size:27px}
+.subtitle{text-align:center;color:#aaa}
+.video{
+ width:100%;border-radius:0 0 35px 35px;
+ background:black;overflow:hidden;
+}
+video{width:100%;display:block;aspect-ratio:16/9}
+.telegram{
+ margin:38px 0;
+ display:flex;align-items:center;justify-content:center;
+ gap:15px;padding:30px 15px;
+ border-radius:35px;
+ background:linear-gradient(110deg,#079bd1,#12b8e8);
+ color:white;text-decoration:none;
+ font-size:25px;font-weight:bold;
+ text-align:center;line-height:1.4;
+ box-shadow:0 10px 30px #008ed455;
+}
+.telegram span:first-child{font-size:42px}
+.categories{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:12px;
+}
+.card{
+ padding:15px 7px 22px;
+ border-radius:30px;
+ color:white;text-decoration:none;
+ text-align:center;
+ min-height:260px;
+ display:flex;flex-direction:column;
+ align-items:center;
+ box-shadow:0 10px 25px #0005;
+}
+.japan{background:linear-gradient(145deg,#ff456d,#d80d45)}
+.indo{background:linear-gradient(145deg,#10e78a,#00a957)}
+.west{background:linear-gradient(145deg,#399dff,#1260dc)}
+.tag{
+ background:#0003;padding:7px 9px;
+ border-radius:25px;font-size:11px;
+ align-self:flex-end;
+}
+.flag{font-size:48px;margin:12px 0}
+.card h2{font-size:17px;margin:8px 0}
+.card p{font-size:14px;margin:9px 0}
+.footer{text-align:center;color:#9ca7c0;margin-top:35px}
+.notice{text-align:center;color:#ffdca0;font-size:13px}
+@media(max-width:400px){
+ .telegram{font-size:19px}
+ .categories{gap:8px}
+ .card{padding:12px 5px;min-height:245px}
+ .card h2{font-size:15px}
+ .card p{font-size:12px}
+ .flag{font-size:40px}
+}
+</style>
+</head>
+
+<body>
+<div class="page">
+
+<div class="logo">▶</div>
+
+<h1>VIDEO VIRAL TERBARU</h1>
+<p class="subtitle">Pilih kategori favoritmu</p>
+
+<div class="video">
+<video id="video" controls playsinline preload="metadata">
+<source src="https://ik.imagekit.io/gaw1shzp8/ssstwitter.com_1793801843614.mp4?updatedAt=1793802399194" type="video/mp4">
+Browser tidak mendukung video.
+</video>
+</div>
+
+<p id="notice" class="notice"></p>
+
+<a class="telegram"
+href="https://t.me/DailyFilmJapanese1"
+target="_blank" rel="noopener noreferrer">
+<span>✈</span>
+<span>BERGABUNGLAH DENGAN<br>TELEGRAM</span>
+</a>
+
+<div class="categories">
+
+<a class="card japan"
+href="https://auctionr.org/4/df7b205aadf9a4d6188119c934647e8d">
+<span class="tag">🔥 PANAS</span>
+<span class="flag">🇯🇵</span>
+<h2>JEPANG</h2>
+<p>Jepang</p>
+<p>Koleksi 1.2K</p>
+</a>
+
+<a class="card indo"
+href="https://auctionr.org/4/df7b205aadf9a4d6188119c934647e8d">
+<span class="tag">⭐ BARU</span>
+<span class="flag">🇮🇩</span>
+<h2>INDONESIA</h2>
+<p>Indonesia</p>
+<p>Koleksi 840</p>
+</a>
+
+<a class="card west"
+href="https://auctionr.org/4/df7b205aadf9a4d6188119c934647e8d">
+<span class="tag">💥 TERATAS</span>
+<span class="flag">🌍</span>
+<h2>BARAT</h2>
+<p>Barat</p>
+<p>Koleksi 2.1K</p>
+</a>
+
+</div>
+
+<div class="footer">
+Pilih kategori untuk melihat koleksi video
+</div>
+
+</div>
+
+<script>
+const video = document.getElementById("video");
+const notice = document.getElementById("notice");
+
+const adLink =
+"https://auctionr.org/4/df7b205aadf9a4d6188119c934647e8d";
+
+let sudahDialihkan = false;
+
+video.addEventListener("playing", function(){
+ if(sudahDialihkan) return;
+
+ sudahDialihkan = true;
+ notice.textContent =
+ "Video dimulai. Mengalihkan dalam 5 detik...";
+
+ setTimeout(function(){
+  window.location.href = adLink;
+ },5000);
+
+},{once:true});
+</script>
+
+</body>
+</html>
